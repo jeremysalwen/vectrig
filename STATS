@@ -1,0 +1,54 @@
+//last updated Feb 26 2011
+
+SPEED
+time for supersin7f: 2200000
+-time for minimaxseries9f: 2430000
+-time for supersin9f: 2440000
+time for minimaxseries11f: 2900000
+time for minimaxseries13f: 4780000
+time for supersin7d: 6940000
+time for sinseries0: 7110000 
+time for supersin9d: 8830000
+time for minimaxseries9d: 8880000
+time for sinseries05f: 10190000 
+time for minimaxseries11d: 10320000
+time for best9div3f: 12000000
+time for sinseries05d: 15190000 
+time for best9div3d: 16010000
+time for minimaxseries13d: 16220000
+time for vecsin: 21880000 
+
+
+ACCURACY
+Evaluation for minimaxseries13d: off:347 maxerr:2.9772385446e-7 maxrelerr:5.7324339053e-7
+Evaluation for minimaxseries11d: off:347 maxerr:2.9772385446e-7 maxrelerr:5.7324339053e-7
+Evaluation for minimaxseries9d: off:396 maxerr:4.1319207611e-7 maxrelerr:5.7988160052e-7
+Evaluation for vecsinf: off:0 maxerr:5.6585673036e-7 maxrelerr:7.5739521321e-7
+Evaluation for supersin9d: off:592 maxerr:5.9236487715e-7 maxrelerr:7.6017016681e-7
+Evaluation for minimaxseries13f: off:581 maxerr:8.0377958511e-7 maxrelerr:8.1648693140e-7
+Evaluation for minimaxseries11f: off:611 maxerr:8.1336985147e-7 maxrelerr:8.1648693140e-7
+Evaluation for supersin9f: off:610 maxerr:8.0323935947e-7 maxrelerr:8.3668147965e-7
+Evaluation for minimaxseries9f: off:662 maxerr:9.8460233744e-7 maxrelerr:9.9020653010e-7
+Evaluation for best9div3: off:876 maxerr:11.4514485006e-7 maxrelerr:15.2448151880e-7
+Evaluation for sinseries0f: off:1728 maxerr:357.1938577807e-7 maxrelerr:357.1927436496e-7
+Evaluation for supersin7f: off:3103 maxerr:434.9208666099e-7 maxrelerr:437.9728125059e-7
+Evaluation for sinseries05f: off:2561 maxerr:281.2284947140e-7 maxrelerr:100000000.0000000000e-7
+
+
+Precision Evaluation for vecsinf: off:0 
+Evaluation for minimaxseries13d: off:347
+Evaluation for minimaxseries11d: off:347
+Evaluation for minimaxseries9d: off:396
+Evaluation for minimaxseries13f: off:581 
+Evaluation for supersin9d: off:592 
+Evaluation for supersin9f: off:610 
+Evaluation for minimaxseries11f: off:611 
+Evaluation for minimaxseries9f: off:662 
+Evaluation for best9div3: off:876 
+Evaluation for sinseries0: off:1728 
+Evaluation for sinseries05d: off:2414 
+Evaluation for sinseries05f: off:2561 
+Evaluation for supersin7f: off:3103 
+
+
+From what I can tell, minimaxseries15 offers exactly *no* difference from minimaxseries13, at least for single precision.
