@@ -1,17 +1,4 @@
-#include <time.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdint.h>
-
-//#define CLOCK
-#define SIZE (int)(1024*3.14159)
-
-#define FLTEND(x) x##d
-#define FLTTYPE double
-#define QUARTPI  FLTEND(0.785398163)
-#define HALFPI  FLTEND(1.570796327)
-
-#define ROOT2O2  FLTEND(0.707106781)
+#include "main.h"
 
 #define SUP7ORD3 FLTEND(-0.16665168108677)
 #define SUP7ORD5  FLTEND(0.0083095170074559)
@@ -56,6 +43,18 @@ void bestseries9div3(float * __restrict__ arr,int len) {
      arr[i]+=(or>PIO6)*arr[i]*(2-4*arr[i]*arr[i]);
    }
 }
+
+#define MMS77  FLTEND(-0.00018684148083603963091)
+#define MMS75  FLTEND(0.0083191783483393336376)
+#define MMS73  FLTEND(-0.16666231326215784070)
+
+void minimaxseries7(float* __restrict__ arr, int len) {
+  for(int i=0; i<len; i++) {
+    FLTTYPE sqr=arr[i]*arr[i];
+    arr[i]+=sqr*arr[i]*(MMS73 + sqr*(MMS75 + sqr* MMS77));
+  }
+}
+
 #define MMS99  FLTEND(2.6199025197195120855e-6)
 #define MMS97  FLTEND(-0.00019816322019412579628)
 #define MMS95  FLTEND(0.0083331628953425015333)
@@ -67,6 +66,7 @@ void minimaxseries9(float* __restrict__ arr, int len) {
     arr[i]+=sqr*arr[i]*(MMS93 + sqr*(MMS95 + sqr* (MMS97 + sqr*MMS99)));
   }
 }
+
 #define MMS1111  FLTEND(-2.3984563163388346477e-8)
 #define MMS119  FLTEND(2.7531152930120359229e-6)
 #define MMS117  FLTEND(-0.00019840988242599135899)
@@ -186,50 +186,4 @@ void minimaxseries15(float* __restrict__ arr, int len) {
    for(int i=0; i<size; i++) {
      arr[i]=sin(arr[i]);
    }
-}
-static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
-   float arr[SIZE];
-   float vecsinarr[SIZE];
-   for(int i=0; i<SIZE; i++) {
-     arr[i]=(float)i/2048;
-     vecsinarr[i]=arr[i];
-   }
-   vecsin(vecsinarr,SIZE);
-#ifdef CLOCK
-   clock_t endwait=clock();
-   for(int i=0; i<100000; i++) {
-#endif
-      func(arr,SIZE);
-#ifdef CLOCK
-   }
-   printf("time for %s: %d\n",name,clock()-endwait);
-#endif
-   unsigned int off=0;
-   float maxerr=0;
-   float maxrelerr=0;
-   for(int i=0; i<SIZE; i++) {
-     if(arr[i]!=vecsinarr[i]) {
-        off++;
-      }
-     if(fabs(arr[i]-sin((float)i/2048)) >maxerr) {
-       maxerr=fabs(arr[i]-sin((float)i/2048));
-     }
-     if(arr[i]!=0 && fabs((arr[i]-sin((float)i/2048))/arr[i]) >maxrelerr) {
-       maxrelerr=fabs((arr[i]-sin((float)i/2048))/arr[i]);
-     }
-   }
-   printf("Evaluation for %s: off:%d maxerr:%10.10fe-7 maxrelerr:%10.10fe-7\n",name,off, maxerr*10e7, maxrelerr*10e7);
-}
-
-int main() {
-evaluateFunction("vecsin",&vecsin);
-evaluateFunction("sinseries0",&sinseries0);
-evaluateFunction("sinseries05",&sinseries05);
-evaluateFunction("supersin7",&sinsuperseries7);
-evaluateFunction("supersin9",&sinsuperseries9);
-evaluateFunction("best9div3",&bestseries9div3);
-evaluateFunction("minimaxseries9",&minimaxseries9);
-evaluateFunction("minimaxseries11",&minimaxseries11);
-evaluateFunction("minimaxseries13",&minimaxseries13);
-evaluateFunction("minimaxseries15",&minimaxseries15);
 }
