@@ -1,10 +1,16 @@
 #include "main.h"
 
+static inline void bringtorange(float* __restrict__ arr, int len) {
+	for(int i=0; i<len; i++) {
+		arr[i]-=((int)(arr[i]/HALFPI))*HALFPI;
+	}
+}
 #define SUP7ORD3 FLTEND(-0.16665168108677)
 #define SUP7ORD5  FLTEND(0.0083095170074559)
 #define SUP7ORD7  FLTEND(-1.8447222287032252e-4)
 
 void sinsuperseries7(float* __restrict__ arr,int len) {
+   bringtorange(arr,len);
    for(int i=0; i<len; i++) {
       FLTTYPE tmp=arr[i]*arr[i];
       arr[i]+=arr[i]*tmp*(SUP7ORD3 + tmp*(SUP7ORD5+tmp*SUP7ORD7));
@@ -19,6 +25,7 @@ void sinsuperseries7(float* __restrict__ arr,int len) {
 #define SUP9ORD1  FLTEND(0.99999998312198)
 
 void sinsuperseries9(float* __restrict__ arr,int len) {
+   bringtorange(arr,len);
    for(int i=0; i<len; i++) {
       FLTTYPE sqr=arr[i]*arr[i];
       arr[i]+=sqr*arr[i]*(SUP9ORD3+sqr*(SUP9ORD5+sqr*(SUP9ORD7+sqr*SUP9ORD9)));
@@ -33,6 +40,7 @@ void sinsuperseries9(float* __restrict__ arr,int len) {
 #define SA2  FLTEND(-1.66666666666e-01)
 
 void bestseries9div3(float * __restrict__ arr,int len) {
+   bringtorange(arr,len);
    for(int i=0; i<len; i++) {
       FLTTYPE or=arr[i];
       if(or>PIO6) {
@@ -49,6 +57,7 @@ void bestseries9div3(float * __restrict__ arr,int len) {
 #define MMS73  FLTEND(-0.16666231326215784070)
 
 void minimaxseries7(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
   for(int i=0; i<len; i++) {
     FLTTYPE sqr=arr[i]*arr[i];
     arr[i]+=sqr*arr[i]*(MMS73 + sqr*(MMS75 + sqr* MMS77));
@@ -61,6 +70,7 @@ void minimaxseries7(float* __restrict__ arr, int len) {
 #define MMS93  FLTEND(-0.16666663516396446563)
 
 void minimaxseries9(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
   for(int i=0; i<len; i++) {
     FLTTYPE sqr=arr[i]*arr[i];
     arr[i]+=sqr*arr[i]*(MMS93 + sqr*(MMS95 + sqr* (MMS97 + sqr*MMS99)));
@@ -73,7 +83,8 @@ void minimaxseries9(float* __restrict__ arr, int len) {
 #define MMS115  FLTEND(0.0083333320944743463687)
 #define MMS113  FLTEND(-0.16666666651391896548)
 
- void minimaxseries11(float* __restrict__ arr, int len) {
+void minimaxseries11(float* __restrict__ arr, int len) {
+  bringtorange(arr,len);
   for(int i=0; i<len; i++) {
     FLTTYPE sqr=arr[i]*arr[i];
     arr[i]+=sqr*arr[i]*(MMS113 + sqr*(MMS115 + sqr* (MMS117 + sqr*(MMS119+sqr*MMS1111))));
@@ -88,6 +99,7 @@ void minimaxseries9(float* __restrict__ arr, int len) {
 #define MMS133  FLTEND(-0.16666666666613490804)
 
 void minimaxseries13(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
   for(int i=0; i<len; i++) {
     int x=(int)(arr[i]/HALFPI);
     arr[i]-=x*HALFPI;
@@ -104,12 +116,14 @@ void minimaxseries13(float* __restrict__ arr, int len) {
 #define MMS153  FLTEND(-0.16666666666666527182)
 
 void minimaxseries15(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
   for(int i=0; i<len; i++) {
     FLTTYPE sqr=arr[i]*arr[i];
      arr[i]+=sqr*arr[i]*(MMS133 + sqr*(MMS135 + sqr* (MMS137 + sqr*(MMS139 + sqr*(MMS1311 + sqr * (MMS1313+sqr*MMS1515))))));
   }
 }
  void sinseries05(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
     float  orig[len];
     float  tmp[len];
     float lol;
@@ -147,6 +161,7 @@ void minimaxseries15(float* __restrict__ arr, int len) {
    }
 }
  void sinseries0(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
     float  orig[len];
     float  tmp[len];
     float lol;

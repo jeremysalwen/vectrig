@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-//#define CLOCK
+#define CLOCK
 #define SIZE (int)(1024*3.14159)
 
 #define FLTEND(x) x##f
