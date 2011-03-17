@@ -42,6 +42,7 @@ static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
 
 int main() {
 evaluateFunction("vecsin",&vecsin);
+evaluateFunction("gnuseries",&gnuseries);
 evaluateFunction("sinseries0o7",&sinseries0o7);
 evaluateFunction("sinseries0o9",&sinseries0o9);
 evaluateFunction("sinseries0o11",&sinseries0o11);

@@ -2,7 +2,13 @@
 
 static inline void bringtorange(float* __restrict__ arr, int len) {
 	for(int i=0; i<len; i++) {
-		arr[i]-=((int)(arr[i]/HALFPI))*HALFPI;
+		arr[i]-=((int)(arr[i]/PI))*PI;
+	}
+	for(int i=0; i<len; i++) {
+          arr[i]=(arr[i]>HALFPI)?(PI-arr[i]):arr[i];
+	}
+	for(int i=0; i<len; i++) {
+	  arr[i]=(arr[i]<-HALFPI)?-PI-arr[i]:arr[i];
 	}
 }
 #define SUP7ORD3 FLTEND(-0.16665168108677)
@@ -138,6 +144,7 @@ void sinseries0o13(float* __restrict__ arr, int len) {
       arr[i]+= arr[i]*sqr*(SS03+sqr*(SS05 +sqr*(SS07 +sqr*(SS09+sqr*(SS011+sqr*SS013)))));
     }
 }
+
 void sinseries0o11(float* __restrict__ arr, int len) {
    bringtorange(arr,len);
    FLTTYPE sqr;
@@ -167,4 +174,21 @@ void vecsin(float* arr, int size) {
    for(int i=0; i<size; i++) {
      arr[i]=sin(arr[i]);
    }
+}
+
+
+FLTTYPE GNUS1  = FLTEND(-1.6666667163e-01);
+FLTTYPE GNUS2  = FLTEND( 8.3333337680e-03);
+FLTTYPE GNUS3  = FLTEND(-1.9841270114e-04);
+FLTTYPE GNUS4  = FLTEND( 2.7557314297e-06);
+FLTTYPE GNUS5  = FLTEND(-2.5050759689e-08);
+FLTTYPE GNUS6  = FLTEND( 1.5896910177e-10);
+
+void gnuseries(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
+   FLTTYPE sqr;
+    for(int i=0; i<len; i++) {
+      sqr=arr[i]*arr[i];
+      arr[i]+= arr[i]*sqr*(GNUS1+sqr*(GNUS2 +sqr*(GNUS3 +sqr*(GNUS4+sqr*(GNUS5+sqr*GNUS6)))));
+    }
 }
