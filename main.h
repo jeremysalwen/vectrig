@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#define CLOCK
+//#define CLOCK
 #define SIZE (int)(1024*3.14159)
 
 #define FLTEND(x) x##f
@@ -20,7 +20,9 @@ void minimaxseries9(float* __restrict__ arr, int len);
 void minimaxseries11(float* __restrict__ arr, int len);
 void minimaxseries13(float* __restrict__ arr, int len);
 void minimaxseries15(float* __restrict__ arr, int len);
-void sinseries05(float* __restrict__ arr, int len);
-void sinseries0(float* __restrict__ arr, int len);
+void sinseries0o13(float* __restrict__ arr, int len);
+void sinseries0o11(float* __restrict__ arr, int len);
+void sinseries0o9(float* __restrict__ arr, int len);
+void sinseries0o7(float* __restrict__ arr, int len);
 void vecsin(float* arr, int size);
 

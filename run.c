@@ -2,12 +2,9 @@
 
 static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
    float arr[SIZE];
-   float  vecsinarr[SIZE];
    for(int i=0; i<SIZE; i++) {
      arr[i]=(float)i/2048;
-     vecsinarr[i]=arr[i];
    }
-   vecsin(vecsinarr,SIZE);
 #ifdef CLOCK
    clock_t endwait=clock();
    for(int i=0; i<100000; i++) {
@@ -22,17 +19,18 @@ static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
    float maxrelerr=0;
    unsigned int ulpsoff=0;
    for(int i=0; i<SIZE; i++) {
-     if(arr[i]!=vecsinarr[i]) {
+     float val=sin((float)i/2048);
+     if(arr[i]!=val) {
         off++;
       }
-     float err=fabs(arr[i]-sin((float)i/2048));
+     float err=fabs(arr[i]-val);
      if(err >maxerr) {
        maxerr=err;
      }
-     if(arr[i]!=0 && fabs(err/arr[i]) >maxrelerr) {
-       maxrelerr=fabs(err/arr[i]);
+     if(arr[i]!=0 && fabs(err/val) >maxrelerr) {
+       maxrelerr=fabs(err/val);
      }
-     unsigned int x= abs((*((unsigned int*)&arr[i])) - (*((unsigned int*)&vecsinarr[i])));
+     unsigned int x= abs((*((unsigned int*)&arr[i])) - (*((unsigned int*)&val)));
      if(x>ulpsoff) {
 	ulpsoff=x;
 	//printf("%u: %u, %u, %f, %f\n",bitsoff,*((unsigned int*)&arr[i]),*((unsigned int*)&vecsinarr[i]),arr[i],vecsinarr[i]);
@@ -44,8 +42,10 @@ static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
 
 int main() {
 evaluateFunction("vecsin",&vecsin);
-evaluateFunction("sinseries0",&sinseries0);
-evaluateFunction("sinseries05",&sinseries05);
+evaluateFunction("sinseries0o7",&sinseries0o7);
+evaluateFunction("sinseries0o9",&sinseries0o9);
+evaluateFunction("sinseries0o11",&sinseries0o11);
+evaluateFunction("sinseries0o13",&sinseries0o13);
 evaluateFunction("supersin7",&sinsuperseries7);
 evaluateFunction("supersin9",&sinsuperseries9);
 evaluateFunction("best9div3",&bestseries9div3);

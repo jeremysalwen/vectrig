@@ -48,7 +48,7 @@ void bestseries9div3(float * __restrict__ arr,int len) {
       }
       FLTTYPE sqr=arr[i]*arr[i];
       arr[i]+=arr[i]*sqr*(SA2+sqr*(SA3+sqr*(SA4+SA5*sqr))); 
-     arr[i]+=(or>PIO6)*arr[i]*(2-4*arr[i]*arr[i]);
+      arr[i]+=(or>PIO6)*arr[i]*(2-4*arr[i]*arr[i]);
    }
 }
 
@@ -122,82 +122,48 @@ void minimaxseries15(float* __restrict__ arr, int len) {
      arr[i]+=sqr*arr[i]*(MMS133 + sqr*(MMS135 + sqr* (MMS137 + sqr*(MMS139 + sqr*(MMS1311 + sqr * (MMS1313+sqr*MMS1515))))));
   }
 }
- void sinseries05(float* __restrict__ arr, int len) {
+
+#define SS03 FLTEND(-0.1666666666666666)
+#define SS05 FLTEND(0.00833333333333333)
+#define SS07 FLTEND(-0.00019841269841269841269841)
+#define SS09 FLTEND(2.75573192239858906525573e-6)
+#define SS011 FLTEND(-2.50521083854417187750e-8)
+#define SS013 FLTEND(1.605904383682161459e-10)
+
+void sinseries0o13(float* __restrict__ arr, int len) {
    bringtorange(arr,len);
-    float  orig[len];
-    float  tmp[len];
-    float lol;
+   FLTTYPE sqr;
     for(int i=0; i<len; i++) {
-      orig[i]=arr[i]-QUARTPI;
-      tmp[i]=orig[i]*ROOT2O2;
-      arr[i]=ROOT2O2;
+      sqr=arr[i]*arr[i];
+      arr[i]+= arr[i]*sqr*(SS03+sqr*(SS05 +sqr*(SS07 +sqr*(SS09+sqr*(SS011+sqr*SS013)))));
     }
-   for(int i=0; i<len; i++) {
-      arr[i]+=tmp[i];
-    }
-   for(int i=0; i<len; i++) {
-      tmp[i]=tmp[i]*tmp[i]*ROOT2O2;
-      arr[i]-=tmp[i];
-   }
-   for(int i=0; i<len; i++) {
-     tmp[i]*=orig[i]/3;
-     arr[i]-=tmp[i];
-   }
-   for(int i=0; i<len; i++) {
-     tmp[i]*=orig[i]/4;
-     arr[i]+=tmp[i];
-   }
-   for(int i=0; i<len; i++) {
-     tmp[i]*=orig[i]/5;
-     arr[i]+=tmp[i];
-   }
-   for(int i=0; i<len; i++) {
-     tmp[i]*=orig[i]/6;
-     arr[i]-=tmp[i];
-   }
-   for(int i=0; i<len; i++) {
-     tmp[i]*=orig[i]/7;
-     arr[i]-=tmp[i];
-   }
 }
- void sinseries0(float* __restrict__ arr, int len) {
+void sinseries0o11(float* __restrict__ arr, int len) {
    bringtorange(arr,len);
-    float  orig[len];
-    float  tmp[len];
-    float lol;
+   FLTTYPE sqr;
     for(int i=0; i<len; i++) {
-      orig[i]=arr[i];
-      tmp[i]=orig[i];
+      sqr=arr[i]*arr[i];
+      arr[i]+= arr[i]*sqr*(SS03+sqr*(SS05 +sqr*(SS07 +sqr*(SS09+sqr*SS011))));
     }
-    for(int i=0; i<len; i++) {
-      orig[i]=orig[i]*orig[i];
-    }
-    for(int i=0; i<len; i++) {
-      tmp[i]*=orig[i]/6;
-      arr[i]-=tmp[i];
-    }
-    for(int i=0; i<len; i++) {
-      tmp[i]*=orig[i]/20;
-      arr[i]+=tmp[i];
-    }
-    for(int i=0; i<len; i++) {
-      tmp[i]*=orig[i]/42;
-      arr[i]-=tmp[i];
-    }
-    for(int i=0; i<len; i++) {
-      tmp[i]*=orig[i]/72;
-      arr[i]+=tmp[i];
-    }
-/*    for(int i=0; i<len; i++) {
-      tmp[i]*=orig[i]*orig[i]/110;
-      arr[i]-=tmp[i];
-    }
-    for(int i=0; i<SIZE; i++) {
-      tmp[i]*=orig[i]*orig[i]/1560;
-      arr[i]+=tmp[i];
-    }*/
 }
- void vecsin(float* arr, int size) {
+void sinseries0o9(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
+   FLTTYPE sqr;
+    for(int i=0; i<len; i++) {
+      sqr=arr[i]*arr[i];
+      arr[i]+= arr[i]*sqr*(SS03+sqr*(SS05 +sqr*(SS07 +sqr*SS09)));
+    }
+}
+void sinseries0o7(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
+   FLTTYPE sqr;
+    for(int i=0; i<len; i++) {
+      sqr=arr[i]*arr[i];
+      arr[i]+= arr[i]*sqr*(SS03+sqr*(SS05 +sqr*SS07));
+    }
+}
+
+void vecsin(float* arr, int size) {
    for(int i=0; i<size; i++) {
      arr[i]=sin(arr[i]);
    }
