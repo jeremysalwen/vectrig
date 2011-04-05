@@ -1,5 +1,15 @@
 #include "main.h"
 
+//RODP=right of decimal place, in scientific notation.
+
+//we split the first 32 binary digits (RODP) of pi into two 15 bit numbers.
+// we choose 32 digits of pi because if we multiply this many digits by
+// MAX(float), we want there still to be 23 digits of precision (RODP)
+// (the number of digits precision in a float).  The max float is 1.111..*2^(127)
+// Thus the max multiple of pi we want is ~2^127.  This means that we must have 127+23
+// binary digits of pi to get the correct answer. that would be 150 digits of PI.
+// We can split them up into elements of size 
+//PI = 1.100100100001111*2^1 + 1.101101010100010*10^-14 + the rest of the binary digits.
 static inline void bringtorange(float* __restrict__ arr, int len) {
 	for(int i=0; i<len; i++) {
 		arr[i]-=((int)(arr[i]/PI))*PI;
@@ -24,11 +34,10 @@ void sinsuperseries7(float* __restrict__ arr,int len) {
 }
 
 
-#define SUP9ORD9  FLTEND(2.5984422633634844e-6)
-#define SUP9ORD7  FLTEND(-1.9804930374010013e-4)
-#define SUP9ORD5  FLTEND(0.0083329670804495)
-#define SUP9ORD3  FLTEND(-0.1666665171729)
-#define SUP9ORD1  FLTEND(0.99999998312198)
+#define SUP9ORD9  FLTEND(2.606554478313565595882074411479941465e-6)
+#define SUP9ORD7  FLTEND(-0.0001980958020645666255913004592493451013630)
+#define SUP9ORD5  FLTEND(0.008333058557743530894880100811013104093447)
+#define SUP9ORD3  FLTEND(-0.1666665877741693726311023404936793615961)
 
 void sinsuperseries9(float* __restrict__ arr,int len) {
    bringtorange(arr,len);

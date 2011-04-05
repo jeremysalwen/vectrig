@@ -1,13 +1,15 @@
 #include "main.h"
 
+#define SIZE (int)(4096*3.14159)
+
 static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
    float arr[SIZE];
    for(int i=0; i<SIZE; i++) {
-     arr[i]=(float)i/2048;
+     arr[i]=(float)i/8192;
    }
 #ifdef CLOCK
    clock_t endwait=clock();
-   for(int i=0; i<100000; i++) {
+   for(int i=0; i<10000; i++) {
 #endif
       func(arr,SIZE);
 #ifdef CLOCK
@@ -19,7 +21,7 @@ static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
    float maxrelerr=0;
    unsigned int ulpsoff=0;
    for(int i=0; i<SIZE; i++) {
-     float val=sin((float)i/2048);
+     float val=sin((float)i/8192);
      if(arr[i]!=val) {
         off++;
       }
