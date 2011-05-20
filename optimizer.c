@@ -143,7 +143,7 @@ int main(char** argv, int argc) {
 	float score,bestscore;
 	bestscore=100000000;
 	score=maxErr(value,NUMTEST,test);
-#define ITERATIONS 10000
+#define ITERATIONS 100000
 	for(int n=0; n<ITERATIONS; n++) {
 		for(int i=0; i<4; i++) {
 			float rand=randgaus()*0.1;

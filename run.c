@@ -1,13 +1,15 @@
 #include "main.h"
 
+#define SIZE (int)(4096*3.14159)
+
 static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
    float arr[SIZE];
    for(int i=0; i<SIZE; i++) {
-     arr[i]=(float)i/2048;
+     arr[i]=(float)i/8192;
    }
 #ifdef CLOCK
    clock_t endwait=clock();
-   for(int i=0; i<100000; i++) {
+   for(int i=0; i<10000; i++) {
 #endif
       func(arr,SIZE);
 #ifdef CLOCK
@@ -19,7 +21,7 @@ static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
    float maxrelerr=0;
    unsigned int ulpsoff=0;
    for(int i=0; i<SIZE; i++) {
-     float val=sin((float)i/2048);
+     float val=sin((float)i/8192);
      if(arr[i]!=val) {
         off++;
       }
@@ -33,7 +35,7 @@ static void evaluateFunction(const char* name, void (*func)(float*,int) ) {
      unsigned int x= abs((*((unsigned int*)&arr[i])) - (*((unsigned int*)&val)));
      if(x>ulpsoff) {
 	ulpsoff=x;
-	//printf("%u: %u, %u, %f, %f\n",bitsoff,*((unsigned int*)&arr[i]),*((unsigned int*)&vecsinarr[i]),arr[i],vecsinarr[i]);
+	//printf("%u: %u,%u, %.10f, %.10f %.10f\n",ulpsoff,*((unsigned int*)&arr[i]),*((unsigned int*)&val),arr[i],val,(float)i/8192);
      }
    }
    printf("Evaluation for %s: off:%d ulpsoff: %u maxerr:%10.10fe-7 maxrelerr:%10.10fe-7\n",name,off,ulpsoff, maxerr*10e7, maxrelerr*10e7);
