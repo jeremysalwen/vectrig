@@ -27,6 +27,7 @@ void sinseries0o9(float* __restrict__ arr, int len);
 void sinseries0o7(float* __restrict__ arr, int len);
 void vecsin(float* arr, int size);
 void gnuseries(float* __restrict__ arr, int len);
+void b7series(float* __restrict__ arr, int len);
 void b9series(float* __restrict__ arr, int len);
 void b11series(float* __restrict__ arr, int len);
 

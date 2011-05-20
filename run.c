@@ -55,6 +55,7 @@ evaluateFunction("minimaxseries9",&minimaxseries9);
 evaluateFunction("minimaxseries11",&minimaxseries11);
 evaluateFunction("minimaxseries13",&minimaxseries13);
 evaluateFunction("minimaxseries15",&minimaxseries15);
+evaluateFunction("b7series",&b7series);
 evaluateFunction("b9series",&b9series);
 evaluateFunction("b11series",&b11series);
 }

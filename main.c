@@ -192,6 +192,18 @@ void gnuseries(float* __restrict__ arr, int len) {
       arr[i]+= arr[i]*sqr*(GNUS1+sqr*(GNUS2 +sqr*(GNUS3 +sqr*(GNUS4+sqr*(GNUS5+sqr*GNUS6)))));
     }
 }
+FLTTYPE B71  = FLTEND(-1.666584024521371064e-1);
+FLTTYPE B72  = FLTEND(8.3145759782258468496e-3);
+FLTTYPE B73  = FLTEND(-1.8561128984150864092e-4);
+
+void b7series(float* __restrict__ arr, int len) {
+   bringtorange(arr,len);
+   FLTTYPE sqr;
+    for(int i=0; i<len; i++) {
+      sqr=arr[i]*arr[i];
+      arr[i]+= arr[i]*sqr*(B71+sqr*(B72 +sqr*B73));
+    }
+}
 FLTTYPE B91  = FLTEND(-1.6666658777408987333e-1);
 FLTTYPE B92  = FLTEND(8.3330585579660222884e-3);
 FLTTYPE B93  = FLTEND(-1.9809580202098392708e-4);
