@@ -233,9 +233,9 @@ void gnuseries(float* __restrict__ arr, int len) {
       arr[i]+= arr[i]*sqr*(GNUS1+sqr*(GNUS2 +sqr*(GNUS3 +sqr*(GNUS4+sqr*(GNUS5+sqr*GNUS6)))));
     }
 }
-#define B71   FLTEND(-1.666584024521371064e-1);
-#define B72   FLTEND(8.3145759782258468496e-3);
-#define B73   FLTEND(-1.8561128984150864092e-4);
+#define B71   FLTEND(-1.666584024521371064e-1)
+#define B72   FLTEND(8.3145759782258468496e-3)
+#define B73   FLTEND(-1.8561128984150864092e-4)
 
 void b7series(float* __restrict__ arr, int len) {
    bringtorange(arr,len);
