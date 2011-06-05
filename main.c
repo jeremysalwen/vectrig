@@ -57,10 +57,10 @@ void sinsuperseries7(float* __restrict__ arr,int len) {
 }
 
 
-#define SUP9ORD9  FLTEND(2.606554487803208e-6)
-#define SUP9ORD7  FLTEND(-1.980958020209839e-4)
-#define SUP9ORD5  FLTEND(8.333058557966022e-3)
-#define SUP9ORD3  FLTEND(-1.666665877740898e-1)
+#define SUP9ORD9  FLTEND(2.5981104561506596085e-6)
+#define SUP9ORD7  FLTEND(-1.9804755309393851093e-4)
+#define SUP9ORD5  FLTEND(8.3329640188311154825e-3)
+#define SUP9ORD3  FLTEND(-1.6666651520209934539e-1)
 
 void sinsuperseries9(float* __restrict__ arr,int len) {
    bringtorange(arr,len);
